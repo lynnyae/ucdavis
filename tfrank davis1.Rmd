@@ -1,0 +1,72 @@
+---
+title: "Seat vs. Major"
+author: "Tara"
+date: "November 16, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction 
+
+Question: Does it matters where one sits in the classroom , by ones major?
+ Study shows that a small percent of Liberal Arts students siti in the front, middle , and the back of a classroom. There is a large percentage of Non liberal
+ Arts student that sits in al seats.
+ 
+ 
+
+
+
+```{r include=FALSE}
+require(tigerstats)
+require(tidyverse)
+data(ucdavis1)
+#View(ucdavis1)
+```
+
+##Look at Seat vs. Major
+
+
+```{r}
+seatmajor=xtabs(~Seat + class, data=ucdavis1)
+barchartGC(seatmajor,type="percent")
+```
+##Data:
+
+There are two catergorical variables seats and class, seats has three rows, front, middle. and back. The class has two levels Liberal Arts, and Non Liberal Arts students.
+
+
+  
+The following graph shows 80% of "Non Liberal Arts" sits in all areas in the classroom. There is a 15% of "Liberal Arts" students that sits in three areas of the class.
+
+
+```{r}
+rowPerc(seatmajor)
+```
+
+##Summary:
+
+$H_O$: There is no evidence relationship to where ones sits in a classroom, and his major.  
+$H_A$:   Where one sits in the classroom and his major is related.
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+chisqtestGC(seatmajor,simulate.p.value=TRUE)
+```
+
+
+
+
+
+
